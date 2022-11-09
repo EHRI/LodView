@@ -6,19 +6,17 @@
 <body id="top">
 	<article>
 		<div id="logoBanner">
-			<div id="logo">
-				<!-- placeholder for logo -->
-			</div>
+			<div id="logo"></div>
 		</div>
 		<header>
 			<hgroup>
 				<h1>
-					<span>This is your own homepage</span>
+					<span>Welcome to the EHRI Linked Open Data portal</span>
 				</h1>
 				<h2></h2>
 			</hgroup>
 			<div id="abstract">
-				<div class="value">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</div>
+				<div class="value">You can browse countries, archival institutions and archival holdings as an interconnected graph.</div>
 			</div>
 
 		</header>
@@ -27,7 +25,16 @@
 
 		<div id="directs">
 
-			<div class="value">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+			<div class="value">
+                <p>To start browsing the data we give you some hints of countries that you may want to explore:</p>
+                <ul id="countriesList">
+                    <li><a href="countries/us">United States of America</a></li>
+                    <li><a href="countries/il">Israel</a></li>
+                    <li><a href="countries/de">Germany</a></li>
+                    <li><a href="countries/be">Belgium</a></li>
+                    <li><a href="countries/nl">The Netherlands</a></li>
+                </ul>
+            </div>
 
 		</div>
 

@@ -719,10 +719,10 @@
 			var counter = 0;
 			var errors = 0;
 			var map = $('map:first');
-			$('.linkingElement').each(function() {
+			/*$('.linkingElement').each(function() {
 				var link = $.trim($(this).attr("href"));
 				linkingList.push(link);
-			});
+			});*/
 
 			/* lod cloud */
 			if (linkingList.length == 0) {
