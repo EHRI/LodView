@@ -120,7 +120,7 @@ p {
 				<ul id="linksToOtherKGs">
 					<li><a href="http://dati.cdec.it/">CDEC person database</a>: We connect the people mentioned in CDEC's description in the EHRI KG to their representation in CDEC's KG so you can complete the data shown here.</li>
 					<li><a href="https://www.dbpedia.org/">DBpedia</a>: We link countries and languages to their DBpedia counterparts so you can expand the generic data about them.</li>
-					<li><a href="https://www.dbpedia.org/">Wikidata</a>: As part of a previous strategy all camps and ghettos are uploaded to Wikidata and therefore linked with their correspoding Wikidata entity.</li>
+					<li><a href="https://www.wikidata.org/">Wikidata</a>: As part of a previous strategy all camps and ghettos are uploaded to Wikidata and therefore linked with their correspoding Wikidata entity.</li>
 				</ul>
 				<p>To start exploring the data you have several possibilities that are listed below:</p>
 				<ul id="explorationPossibilities">
