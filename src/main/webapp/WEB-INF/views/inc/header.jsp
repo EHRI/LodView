@@ -13,7 +13,7 @@
 <meta name="twitter:title" content="${results.getTitle()} &mdash; LodView, giving data a new shape">
 <meta name="twitter:description" content="LodView is a powerful RDF viewer, IRI dereferencer and opensource SPARQL navigator">
 <link rel="icon" type="image/png" href="${conf.getStaticResourceURL()}img/favicon.png">
-<link href='//fonts.googleapis.com/css?family=Roboto:100,300,500&subset=latin-ext,latin,greek-ext,greek,cyrillic-ext,vietnamese,cyrillic' rel='stylesheet' type='text/css'>
+<%--<link href='//fonts.googleapis.com/css?family=Roboto:100,300,500&subset=latin-ext,latin,greek-ext,greek,cyrillic-ext,vietnamese,cyrillic' rel='stylesheet' type='text/css'>--%>
 <!-- managing maps  -->
 <link rel="stylesheet" href="${conf.getStaticResourceURL()}vendor/leaflet/leaflet.css" />
 <script src="${conf.getStaticResourceURL()}vendor/leaflet/leaflet.js"></script>

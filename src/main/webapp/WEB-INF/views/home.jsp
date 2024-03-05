@@ -3,202 +3,126 @@
 <title>${results.getTitle()}&mdash;LodView</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.11/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <jsp:include page="inc/header.jsp"></jsp:include>
-<link rel="stylesheet" href="/statisResources/home.css"/>
-<style>
-#countriesList {
-	margin-left: 30px;
-	margin-top: 5px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px 40px;
-	justify-content: space-between;
-}
-
-#explorationPossibilities, #linksToOtherKGs {
-	margin-left: 30px;
-	margin-top: 5px;
-}
-
-#directs .value {
-	margin-bottom: 30px;
-}
-
-a {
-	text-decoration: underline;
-}
-
-p {
-	margin-top: 5px;
-}
-
-.queryTitleAndButton {
-	display: flex;
-	gap: 10px;
-}
-
-.CodeMirror {
-	height: auto;
-	border: 1px solid #eee;
-}
-
-.CodeMirror-scroll {
-	height: auto;
-}
-
-.customButton {
-	border: 0;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-radius: 10px;
-  	background-color: #83004c;
-	text-decoration: none;
-	color: white !important;
-	cursor: pointer;
-}
-
-.customButton:hover {
-	background-color: #5c0036;
-}
-
-.customButton:hover {
-	color: white !important;
-	text-decoration: none !important;
-}
-
-#sparqlQueries {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	row-gap: 30px;
-	column-gap: 10px;
-}
-
-.queryExample {
-	min-width: 48%;
-}
-
-.queryTitleAndButton {
-	display: flex;
-	justify-content: space-between;
-	padding-bottom: 20px;
-	align-items: baseline;
-}
-
-#sparqlQueries {
-	padding-top: 10px;
-}
-</style>
+<link rel="stylesheet" href="${conf.getStaticResourceURL()}/home.css"/>
 </head>
 <body id="top">
 	<article>
-		<div id="logoBanner">
-			<div id="logo"></div>
-		</div>
 		<header>
+			<div id="logoBanner">
+				<div id="logo"></div>
+			</div>
 			<hgroup>
 				<h1>
-					<span>EHRI's Knowledge Graph</span>
+					<span>Knowledge Graph</span>
 				</h1>
-				<h2></h2>
 			</hgroup>
-			<div id="abstract">
-				<div class="value">In this portal you can consult the <a href="https://portal.ehri-project.eu/">EHRI portal</a> data as Linked Open Data.</div>
-			</div>
-
 		</header>
+
+		<div id="abstract">
+			<div class="value">This tool provides access to information in the <a
+					href="https://portal.ehri-project.eu/">EHRI Portal</a> as Linked Open Data (LOD).</div>
+		</div>
 
 		<aside class="empty"></aside>
 
 		<div id="directs">
 			<div class="value">
 				<h3>Explore the data</h3>
-				<p>This data is a conversion effort that takes data hosted in the EHRI portal and offers it as a Knowledge Graph (KG). Here you can browse different EHRI's entities (e.g., country reports, archival institutions descriptions, archival descriptions, etc.) as linked data and you can link to them from you own data.</p>
-				<p>This KG follows aligns the data to <a href="https://www.ica.org/en/records-in-contexts-ontology">Records in Context Ontology (RiC-O)</a> and uses <a href="https://schema.org/">schema.org</a> and own EHRI properties for completion. This specific use and combination will become part of a future EHRI ontology.</p>
-				<p>As an ongoing effort to connect with other KGs in the LOD cloud, and to our partners own efforts, the EHRI KG is now connected to:</p>
+				<p>This tool takes data hosted in the EHRI portal and offers it as a Knowledge Graph (KG). Here you can
+					browse different EHRI's entities (e.g., country reports, archival institutions descriptions,
+					archival descriptions, etc.) as linked data, and you can link to them from you own data.</p>
+				<p>This KG follows aligns the data to <a href="https://www.ica.org/en/records-in-contexts-ontology">Records in Context Ontology (RiC-O)</a>
+					and uses <a href="https://schema.org/">schema.org</a> and own EHRI properties for completion.
+					This specific use and combination will become part of a future EHRI ontology.</p>
+				<p>As an ongoing effort to connect with other KGs in the LOD cloud, and to our partner's own efforts, the EHRI KG is now connected to:</p>
 				<ul id="linksToOtherKGs">
-					<li><a href="http://dati.cdec.it/">CDEC person database</a>: We connect the people mentioned in CDEC's description in the EHRI KG to their representation in CDEC's KG so you can complete the data shown here.</li>
-					<li><a href="https://www.dbpedia.org/">DBpedia</a>: We link countries and languages to their DBpedia counterparts so you can expand the generic data about them.</li>
-					<li><a href="https://www.wikidata.org/">Wikidata</a>: As part of a previous strategy all camps and ghettos are uploaded to Wikidata and therefore linked with their correspoding Wikidata entity.</li>
+					<li><a href="http://dati.cdec.it/">CDEC person database</a>: We connect the people mentioned in
+						CDEC's description in the EHRI KG to their representation in CDEC's KG, so you can complete the data shown here.</li>
+					<li><a href="https://www.dbpedia.org/">DBpedia</a>: We link countries and languages to their
+						DBpedia counterparts, so you can explore more generic data about them.</li>
+					<li><a href="https://www.wikidata.org/">Wikidata</a>: As part of a previous strategy all camps
+						and ghettos were uploaded to Wikidata and therefore linked with their corresponding Wikidata
+						entities.</li>
 				</ul>
-				<p>To start exploring the data you have several possibilities that are listed below:</p>
+				<p>To start exploring the data you have several possibilities listed below:</p>
 				<ul id="explorationPossibilities">
-					<li><a href="#countriesListSection">Countries list</a>: You can use our countries list to start browsing the institutions and then the collections</li>
+					<li><a href="#countriesListSection">Countries list</a>: You can use our countries list to start
+						browsing institutions and, where available, their collections</li>
 					<li><a href="#sparqlQueries">SPARQL examples</a>: You can consult our SPARQL queries examples and adapt them to your needs.</li>
-					<li><a href="query">SPARQL endpoint</a>: You can test your own queries against our SPARQL endpoint</li>
+					<li><a href="${conf.homeUrl}query/">SPARQL endpoint</a>: You can test your own queries against
+						our SPARQL
+						endpoint</li>
 				</ul>
 			</div>
 
 			<div class="value" id="countriesListSection">
 				<h3>Countries list</h3>
                 <p>The country reports constitute the main entry point to exploring the data in the EHRI portal. They offers an introduction to the Holocaust research and landscape in a certain country. Therefore, we propose that non-experts users start browsing this KG from one of the proposed countries in order to get an idea of the potential of this new tool. Below you can find a comprehensive list of the countries represented in the EHRI portal.</p>
-                <div id="countriesList">
-                    <a class="customButton" href="countries/al">Albania</a>
-					<a class="customButton" href="countries/dz">Algeria</a>
-					<a class="customButton" href="countries/ar">Argentina</a>
-					<a class="customButton" href="countries/am">Armenia</a>
-					<a class="customButton" href="countries/au">Australia</a>
-					<a class="customButton" href="countries/at">Austria</a>
-					<a class="customButton" href="countries/az">Azerbaijan</a>
-					<a class="customButton" href="countries/by">Belarus</a>
-					<a class="customButton" href="countries/be">Belgium</a>
-					<a class="customButton" href="countries/ba">Bosnia & Herzegovina</a>
-					<a class="customButton" href="countries/bg">Bulgaria</a>
-					<a class="customButton" href="countries/ca">Canada</a>
-					<a class="customButton" href="countries/hr">Croatia</a>
-					<a class="customButton" href="countries/cz">Czechia</a>
-					<a class="customButton" href="countries/dk">Denmark</a>
-					<a class="customButton" href="countries/eg">Egypt</a>
-					<a class="customButton" href="countries/ee">Estonia</a>
-					<a class="customButton" href="countries/fi">Finland</a>
-					<a class="customButton" href="countries/fr">France</a>
-					<a class="customButton" href="countries/ge">Georgia</a>
-					<a class="customButton" href="countries/de">Germany</a>
-					<a class="customButton" href="countries/gr">Greece</a>
-					<a class="customButton" href="countries/hu">Hungary</a>
-					<a class="customButton" href="countries/ie">Ireland</a>
-					<a class="customButton" href="countries/il">Israel</a>
-					<a class="customButton" href="countries/it">Italy</a>
-					<a class="customButton" href="countries/jp">Japan</a>
-					<a class="customButton" href="countries/kz">Kazakhstan</a>
-					<a class="customButton" href="countries/kg">Kyrgyzstan</a>
-					<a class="customButton" href="countries/lv">Latvia</a>
-					<a class="customButton" href="countries/ly">Libya</a>
-					<a class="customButton" href="countries/li">Liechtenstein</a>
-					<a class="customButton" href="countries/lt">Lithuania</a>
-					<a class="customButton" href="countries/lu">Luxembourg</a>
-					<a class="customButton" href="countries/md">Moldova</a>
-					<a class="customButton" href="countries/mc">Monaco</a>
-					<a class="customButton" href="countries/me">Montenegro</a>
-					<a class="customButton" href="countries/ma">Morocco</a>
-					<a class="customButton" href="countries/nl">The Netherlands</a>
-					<a class="customButton" href="countries/mk">North Macedonia</a>
-					<a class="customButton" href="countries/no">Norway</a>
-					<a class="customButton" href="countries/pl">Poland</a>
-					<a class="customButton" href="countries/pt">Portugal</a>
-					<a class="customButton" href="countries/ro">Romania</a>
-					<a class="customButton" href="countries/ru">Russia</a>
-					<a class="customButton" href="countries/sm">San Marino</a>
-					<a class="customButton" href="countries/rs">Serbia</a>
-					<a class="customButton" href="countries/sk">Slovakia</a>
-					<a class="customButton" href="countries/si">Slovenia</a>
-					<a class="customButton" href="countries/za">South Africa</a>
-					<a class="customButton" href="countries/es">Spain</a>
-					<a class="customButton" href="countries/se">Sweden</a>
-					<a class="customButton" href="countries/ch">Switzerland</a>
-					<a class="customButton" href="countries/tw">Taiwan</a>
-					<a class="customButton" href="countries/tj">Tajikistan</a>
-					<a class="customButton" href="countries/tn">Tunisia</a>
-					<a class="customButton" href="countries/tm">Turkmenistan</a>
-					<a class="customButton" href="countries/ua">Ukraine</a>
-					<a class="customButton" href="countries/gb">United Kingdom</a>
-					<a class="customButton" href="countries/us">United States</a>
-					<a class="customButton" href="countries/uz">Uzbekistan</a>
-					<a class="customButton" href="countries/va">Vatican City</a>
-					<a class="customButton" href="countries/xk">Kosovo</a>
+                <ul id="countriesList">
+					<li><a class="customButton" href="countries/al">Albania</a></li>
+					<li><a class="customButton" href="countries/dz">Algeria</a></li>
+					<li><a class="customButton" href="countries/ar">Argentina</a></li>
+					<li><a class="customButton" href="countries/am">Armenia</a></li>
+					<li><a class="customButton" href="countries/au">Australia</a></li>
+					<li><a class="customButton" href="countries/at">Austria</a></li>
+					<li><a class="customButton" href="countries/az">Azerbaijan</a></li>
+					<li><a class="customButton" href="countries/by">Belarus</a></li>
+					<li><a class="customButton" href="countries/be">Belgium</a></li>
+					<li><a class="customButton" href="countries/ba">Bosnia & Herzegovina</a></li>
+					<li><a class="customButton" href="countries/bg">Bulgaria</a></li>
+					<li><a class="customButton" href="countries/ca">Canada</a></li>
+					<li><a class="customButton" href="countries/hr">Croatia</a></li>
+					<li><a class="customButton" href="countries/cz">Czechia</a></li>
+					<li><a class="customButton" href="countries/dk">Denmark</a></li>
+					<li><a class="customButton" href="countries/eg">Egypt</a></li>
+					<li><a class="customButton" href="countries/ee">Estonia</a></li>
+					<li><a class="customButton" href="countries/fi">Finland</a></li>
+					<li><a class="customButton" href="countries/fr">France</a></li>
+					<li><a class="customButton" href="countries/ge">Georgia</a></li>
+					<li><a class="customButton" href="countries/de">Germany</a></li>
+					<li><a class="customButton" href="countries/gr">Greece</a></li>
+					<li><a class="customButton" href="countries/hu">Hungary</a></li>
+					<li><a class="customButton" href="countries/ie">Ireland</a></li>
+					<li><a class="customButton" href="countries/il">Israel</a></li>
+					<li><a class="customButton" href="countries/it">Italy</a></li>
+					<li><a class="customButton" href="countries/jp">Japan</a></li>
+					<li><a class="customButton" href="countries/kz">Kazakhstan</a></li>
+					<li><a class="customButton" href="countries/kg">Kyrgyzstan</a></li>
+					<li><a class="customButton" href="countries/lv">Latvia</a></li>
+					<li><a class="customButton" href="countries/ly">Libya</a></li>
+					<li><a class="customButton" href="countries/li">Liechtenstein</a></li>
+					<li><a class="customButton" href="countries/lt">Lithuania</a></li>
+					<li><a class="customButton" href="countries/lu">Luxembourg</a></li>
+					<li><a class="customButton" href="countries/md">Moldova</a></li>
+					<li><a class="customButton" href="countries/mc">Monaco</a></li>
+					<li><a class="customButton" href="countries/me">Montenegro</a></li>
+					<li><a class="customButton" href="countries/ma">Morocco</a></li>
+					<li><a class="customButton" href="countries/nl">The Netherlands</a></li>
+					<li><a class="customButton" href="countries/mk">North Macedonia</a></li>
+					<li><a class="customButton" href="countries/no">Norway</a></li>
+					<li><a class="customButton" href="countries/pl">Poland</a></li>
+					<li><a class="customButton" href="countries/pt">Portugal</a></li>
+					<li><a class="customButton" href="countries/ro">Romania</a></li>
+					<li><a class="customButton" href="countries/ru">Russia</a></li>
+					<li><a class="customButton" href="countries/sm">San Marino</a></li>
+					<li><a class="customButton" href="countries/rs">Serbia</a></li>
+					<li><a class="customButton" href="countries/sk">Slovakia</a></li>
+					<li><a class="customButton" href="countries/si">Slovenia</a></li>
+					<li><a class="customButton" href="countries/za">South Africa</a></li>
+					<li><a class="customButton" href="countries/es">Spain</a></li>
+					<li><a class="customButton" href="countries/se">Sweden</a></li>
+					<li><a class="customButton" href="countries/ch">Switzerland</a></li>
+					<li><a class="customButton" href="countries/tw">Taiwan</a></li>
+					<li><a class="customButton" href="countries/tj">Tajikistan</a></li>
+					<li><a class="customButton" href="countries/tn">Tunisia</a></li>
+					<li><a class="customButton" href="countries/tm">Turkmenistan</a></li>
+					<li><a class="customButton" href="countries/ua">Ukraine</a></li>
+					<li><a class="customButton" href="countries/gb">United Kingdom</a></li>
+					<li><a class="customButton" href="countries/us">United States</a></li>
+					<li><a class="customButton" href="countries/uz">Uzbekistan</a></li>
+					<li><a class="customButton" href="countries/va">Vatican City</a></li>
+					<li><a class="customButton" href="countries/xk">Kosovo</a></li>
                 </ul>
-            </div>
 			</div>
 
 			<div>
@@ -560,7 +484,7 @@ SELECT ?record WHERE {
 			.replaceAll(";", "%3B")
 			.replaceAll("\n", "%0A")
 			.replaceAll("\t", "%09");
-		let url = "https://lod.ehri-project-test.eu/query/#query=" + code;
+		let url = "${conf.homeUrl}/query/#query=" + code;
 		window.open(url, '_blank');
 	}
 

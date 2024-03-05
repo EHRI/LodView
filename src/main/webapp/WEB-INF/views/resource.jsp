@@ -4,12 +4,12 @@
 				<%@include file="inc/header.jsp"%>
 </head><body id="top">
 	<article>
-		<div id="logoBanner"> 
-			<div id="logo">
-				<!-- placeholder for logo -->
-			</div>
-		</div>
 		<header>
+			<div id="logoBanner">
+				<div id="logo">
+					<!-- placeholder for logo -->
+				</div>
+			</div>
 			<hgroup>
 				<h1><span>${results.getTitle()}</span></h1>
 				<h2>
@@ -28,32 +28,33 @@
 					</div>
 				</h2>
 			</hgroup> 
-			<c:choose>
-				<c:when test="${results.getDescriptionProperty() != null}">
-					<div id="abstract">
-						<label class="c1"><a data-label="${results.getDescriptionProperty().getLabel()}"  data-comment="${results.getDescriptionProperty().getComment()}" href="${results.getDescriptionProperty().getPropertyUrl()}"> <c:choose>
-									<c:when test='${results.getDescriptionProperty().getNsProperty().startsWith("null:")}'>&lt;${results.getDescriptionProperty().getProperty().replaceAll("([#/])([^#/]+)$","$1<span>$2")}</span>&gt;</c:when>
-									<c:otherwise>${results.getDescriptionProperty().getNsProperty().replaceAll(":",":<span>")}</span>
-									</c:otherwise>
-								</c:choose>
-						</a></label>
-						<div class="c2 value">
-							<c:forEach items='${results.getLiterals(results.getMainIRI()).get(results.getDescriptionProperty())}' var="el">
-								<div class="lang ${el.getLang()}" data-lang="${el.getLang()}">
-									${el.getValue()}
-									<c:if test='${el.getDataType()!=null && !el.getDataType().equals("")}'>
-										<span class="dType">${el.getNsDataType()}</span>
-									</c:if>
-								</div>
-							</c:forEach>
-						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div id="abstract" class="empty"></div>
-				</c:otherwise>
-			</c:choose>
 		</header>
+
+		<c:choose>
+			<c:when test="${results.getDescriptionProperty() != null}">
+				<div id="abstract">
+					<label class="c1"><a data-label="${results.getDescriptionProperty().getLabel()}"  data-comment="${results.getDescriptionProperty().getComment()}" href="${results.getDescriptionProperty().getPropertyUrl()}"> <c:choose>
+						<c:when test='${results.getDescriptionProperty().getNsProperty().startsWith("null:")}'>&lt;${results.getDescriptionProperty().getProperty().replaceAll("([#/])([^#/]+)$","$1<span>$2")}</span>&gt;</c:when>
+						<c:otherwise>${results.getDescriptionProperty().getNsProperty().replaceAll(":",":<span>")}</span>
+						</c:otherwise>
+					</c:choose>
+					</a></label>
+					<div class="c2 value">
+						<c:forEach items='${results.getLiterals(results.getMainIRI()).get(results.getDescriptionProperty())}' var="el">
+							<div class="lang ${el.getLang()}" data-lang="${el.getLang()}">
+									${el.getValue()}
+								<c:if test='${el.getDataType()!=null && !el.getDataType().equals("")}'>
+									<span class="dType">${el.getNsDataType()}</span>
+								</c:if>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div id="abstract" class="empty"></div>
+			</c:otherwise>
+		</c:choose>
 
 		<c:choose>
 			<c:when test='${hasImages || hasMap || hasLod || hasVideos || hasAudios}'>

@@ -1,4 +1,5 @@
 @import url('css/reset.css'); /* first of all, reset!  */
 @import url('css/commons.css'); /* do not touch this */
 @import url('css/commons_2x.css'); /* pixel ratio > 1 */
+@import url('css/fonts.css'); /* your fonts */
 @import url('css/custom.css'); /* your style */

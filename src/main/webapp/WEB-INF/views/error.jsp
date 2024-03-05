@@ -5,17 +5,19 @@
 </head>
 <body id="errorPage" class="error${statusCode}">
 	<article>
-		<div id="logoBanner">			<div id="logo">
-				<!-- placeholder for logo -->
-			</div></div>
 		<header>
+			<div id="logoBanner">
+				<div id="logo">
+					<!-- placeholder for logo -->
+				</div>
+			</div>
 			<hgroup>
 				<div id="owl"></div>
 				<h1>${statusCode}</h1>
 				<h2></h2>
 			</hgroup>
-			<div id="abstract"></div>
 		</header>
+		<div id="abstract"></div>
 		<div id="bnodes">
 			<c:choose>
 				<c:when test="${statusCode =='500'}">
@@ -30,7 +32,9 @@
 				</c:when>
 				<c:otherwise>
 					<p>
-						<sp:message code='error.somethingWrong' text='something went wrong' /><br> <strong>${endpoint.replaceAll("<>","")}</strong> <br> doesn't contain any information about <br> <strong>&lt;${IRI.replaceAll("([^a-zA-Z0-9])","$1&#8203;")}&gt;</strong>
+						<sp:message code='error.somethingWrong' text='something went wrong' /><br>
+						<strong>${endpoint.replaceAll("<>","")}</strong> <br>
+						doesn't contain any information about <br> <strong>&lt;${IRI.replaceAll("([^a-zA-Z0-9])","$1&#8203;")}&gt;</strong>
 					</p>
 				</c:otherwise>
 			</c:choose>
