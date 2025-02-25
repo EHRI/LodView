@@ -13,14 +13,20 @@
 			</div>
 			<hgroup>
 				<h1>
-					<span>Knowledge Graph</span>
+					<span>Knowledge Graph (Prototype)</span>
 				</h1>
 			</hgroup>
 		</header>
 
 		<div id="abstract">
 			<div class="value">This tool provides access to information in the <a
-					href="https://portal.ehri-project.eu/">EHRI Portal</a> as Linked Open Data (LOD).</div>
+					href="https://portal.ehri-project.eu/">EHRI Portal</a> as Linked Open Data (LOD).
+
+				<br/>
+				<strong>Note:</strong>
+				This Knowledge Graph is a prototype and is still under active development. You can find more information
+				at the <a href="https://ehri-kg.ehri-project.eu/">EHRI KG project website</a>.
+			</div>
 		</div>
 
 		<aside class="empty"></aside>
