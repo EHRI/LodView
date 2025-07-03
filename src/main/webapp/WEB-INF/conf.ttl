@@ -53,7 +53,7 @@
 @prefix crm120111: <http://erlangen-crm.org/120111/> .
 @prefix rel: <http://purl.org/vocab/relationship/> .
 @prefix rico:  <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ehri:  <https://data.ehri-project.eu/> .
+@prefix ehri:  <https://lod.ehri-project.eu/ontology#> .
 
 
 <> a conf:Configuration;
@@ -180,7 +180,8 @@
 	
 	conf:titleProperties		dc:title , dcterms:title, rdfs:label , <http://www.w3.org/2004/02/skos/core#prefLabel> , 
 								<http://www.w3.org/2008/05/skos-xl#prefLabel> , <http://www.w3.org/2009/08/skos-reference/skos.html#prefLabel> , 
-								gn:officialName , gn:name , rdf:value , foaf:surname , <http://purl.org/collections/nl/am/title> , <http://xmlns.com/foaf/0.1/name>;  
+								gn:officialName , gn:name , rdf:value , foaf:surname , <http://purl.org/collections/nl/am/title> , <http://xmlns.com/foaf/0.1/name>, 
+								rico:name ;  
 								
 	conf:descriptionProperties	rdfs:comment , dc:description , dcterms:description , 
 								dc:description , skos:definition ,  <http://dbpedia.org/ontology/abstract>;
@@ -188,8 +189,8 @@
 	conf:imageProperties		foaf:depiction , <http://erlangen-crm.org/120111/P138i_has_representation> , crm-owl:P138i_has_representation ,
 								<http://www.researchspace.org/ontology/FR138i_representation>;
 								
-	conf:longitudeProperties	geo:long;
-	conf:latitudeProperties		geo:lat;
+	conf:longitudeProperties	geo:long, rico:longitude ;
+	conf:latitudeProperties		geo:lat, rico:latitude ;
 	conf:linkingProperties		owl:sameAs , skos:exactMatch , gn:locatedIn ,  <http://www.bbc.co.uk/ontologies/coreconcepts/sameAs>;
 
 	conf:videoProperties		<http://schema.org/VideoObject>;
