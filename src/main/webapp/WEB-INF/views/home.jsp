@@ -155,7 +155,7 @@ PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 
 SELECT ?country ?countryLabel WHERE {
-	?country a rico:Place ;
+	?country a ehri:Country ;
 			rico:name ?countryLabel .
 }</textarea>
 				</div>
@@ -176,16 +176,17 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT ?institution ?institutionLabel WHERE {
-	ehri_countries:ar a rico:Place ;
+	ehri_countries:ar a ehri:Country ;
 			rico:name ?countryLabel ;
 			rico:containsOrContained ?institution .
-	?institution rdfs:label ?institutionLabel .
+	?institution rico:name ?institutionLabel .
 }</textarea>
 				</div>
 				<div class="queryExample">
 					<div class="queryTitleAndButton">
-						<p>Get instantiations from NIOD</p>
+						<p>Get contact information about institutions in a country</p>
 						<button class="customButton"  onclick="openOnEndpoint(this);">Try it</button>
 					</div>
 <textarea>PREFIX db: &lt;http://dbpedia.org/&gt;
@@ -200,18 +201,19 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT * WHERE {
-	ehri_countries:ar a rico:Place ;
+	ehri_countries:ar a ehri:Country ;
 			rico:name ?countryLabel ;
-			rico:containsOrContained ?institution .
-		?institution a rico:CorporateBody ;
-			rdfs:label ?institutionLabel ;
-		schema:telephone ?phone ;
+			rico:isOrWasLocationOfAgent ?institution .
+   ?institution a ehri:Institution ;
+			rico:name ?institutionLabel ;
+   			rico:agentHasOrHadLocation ?instutionLocation .
+   ?instutionLocation rico:hasOrHadPhysicalLocation ?physicalLocation .
+   ?physicalLocation schema:telephone ?phone ;
 			schema:email ?email ;
-			rico:hasOrHadLocation [
-				rico:location ?address ;
-			schema:postalCode ?zipCode 
-		]
+			rico:name ?address ;
+			schema:postalCode ?zipCode .
 }</textarea>
 				</div>
 				<div class="queryExample">
@@ -232,12 +234,11 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT ?record ?recordLabel WHERE {
-		ehri_institutions:nl-002896 a rico:CorporateBody ;
-			rico:isOrWasHolderOf ?instantiation .
-		?instantiation rdfs:label ?instantiationLabel .
-		?instantiation rico:isInstantiationOf ?record .
-		?record rdfs:label ?recordLabel .
+  		?record a ehri:Record ;
+    		rico:hasOrHadHolder ehri_institutions:nl-002896 ;
+            rico:title ?recordLabel .
 }</textarea>
 				</div>
 				<div class="queryExample">
@@ -257,13 +258,12 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT ?record ?recordLabel ?scopeAndContent WHERE {
-		ehri_institutions:be-002157 a rico:CorporateBody ;
-			rico:isOrWasHolderOf ?instantiation .
-		?instantiation rdfs:label ?instantiationLabel .
-		?instantiation rico:isInstantiationOf ?record .
-		?record rdfs:label ?recordLabel .
-		?record rico:scopeAndContent ?scopeAndContent .
+  		?record a ehri:Record ;
+    		rico:hasOrHadHolder ehri_institutions:be-002157 ;
+            rico:title ?recordLabel ;
+  		    rico:scopeAndContent ?scopeAndContent .
 		FILTER(lang(?scopeAndContent) = "nld")
 }</textarea>
 				</div>
@@ -285,9 +285,10 @@ PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 PREFIX ehri_terms: &lt;http://lod.ehri-project-test.eu/vocabularies/ehri-terms/&gt;
+
 SELECT ?record ?recordLabel WHERE {
-		?record a rico:Record ;
-			rdfs:label ?recordLabel ;
+		?record a ehri:Record ;
+			rico:title ?recordLabel ;
 			rico:hasOrHadSubject ehri_terms:1069 .
 }</textarea>
 				</div>
@@ -308,14 +309,13 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT (COUNT(?record) as ?totalRecords) WHERE {
-	ehri_countries:gb a rico:Place ;
-			rico:containsOrContained ?institution .
-		?institution a rico:CorporateBody ;
-		rico:isOrWasHolderOf ?instantiation .
-		?instantiation a rico:Instantiation ;
-			rico:isInstantiationOf ?record .
-		?record a rico:Record .
+		ehri_countries:gb a ehri:Country ;
+			rico:isOrWasLocationOfAgent ?institution .
+  		?record a ehri:Record ;
+			rico:title ?recordLabel ;
+   			rico:hasOrHadHolder ?institution ;
 }</textarea>
 				</div>
 				<div class="queryExample">
@@ -335,14 +335,13 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT ?institution (COUNT(?record) as ?totalRecords) WHERE {
-	ehri_countries:gb a rico:Place ;
-			rico:containsOrContained ?institution .
-		?institution a rico:CorporateBody ;
-		rico:isOrWasHolderOf ?instantiation .
-		?instantiation a rico:Instantiation ;
-			rico:isInstantiationOf ?record .
-		?record a rico:Record .
+  	ehri_countries:gb a ehri:Country ;
+			rico:isOrWasLocationOfAgent ?institution .
+  		?record a ehri:Record ;
+			rico:title ?recordLabel ;
+   			rico:hasOrHadHolder ?institution ;
 } GROUP BY ?institution ORDER BY DESC(?totalRecords)</textarea>
 				</div>
 				<div class="queryExample">
@@ -362,19 +361,18 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
+
 SELECT ?country (AVG(?totalRecordByInstitution) as ?meanByCountry) WHERE {
-	?country a rico:Place ;
-			rico:containsOrContained ?institution .
+	?country a ehri:Country ;
+			rico:isOrWasLocationOfAgent ?institution .
 		{
 			SELECT ?institution (COUNT(?record) as ?totalRecordByInstitution) WHERE {
-				?institution a rico:CorporateBody ;
-					rico:isOrWasHolderOf ?instantiation .
-				?instantiation a rico:Instantiation ;
-					rico:isInstantiationOf ?record .
-				?record a rico:Record .
+      			?record a ehri:Record ;
+					rico:title ?recordLabel ;
+   					rico:hasOrHadHolder ?institution .
+				?institution a ehri:Institution ;
 			} GROUP BY ?institution
 		}
-		
 } GROUP BY ?country</textarea>
 				</div>
 				<div class="queryExample">
@@ -392,18 +390,21 @@ PREFIX ehri:  &lt;http://lod.ehri-project-test.eu/ontology#&gt;
 PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
-SELECT ?countryLabel (count(?instantiation) as ?recordsCount) WHERE {
-	?country a rico:Place ;
+
+SELECT ?countryLabel (count(?record) as ?recordsCount) WHERE {
+	?country a ehri:Country ;
 		owl:sameAs ?dbCountry ;
-		rdfs:label ?countryLabel ;
-		rico:containsOrContained ?institution .
+		rico:name ?countryLabel ;
+		rico:isOrWasLocationOfAgent ?institution .
+  	?record a ehri:Record ;
+        rico:title ?recordLabel ;
+   		rico:hasOrHadHolder ?institution .
 	SERVICE &lt;https://dbpedia.org/sparql/&gt; {
 		?dbCountry  dbo:populationTotal ?population . 
-	}
-	?institution a rico:CorporateBody ;
-		rico:isOrWasHolderOf ?instantiation .
+    	
+	} 
 	FILTER (?population &lt; 100000)
-}
+} 
 GROUP BY ?countryLabel</textarea>
 				</div>
 				<div class="queryExample">
@@ -426,10 +427,11 @@ PREFIX ehri_institutions: &lt;http://lod.ehri-project-test.eu/institutions/&gt;
 PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 PREFIX bio-ext: &lt;http://dati.cdec.it/lod/bio-ext/&gt;
+
 SELECT ?survivor (COUNT(?record) as ?recordCount) WHERE {
-	ehri_institutions:it-002845 rico:isOrWasHolderOf ?instantiation .
-	?instantiation rico:isInstantiationOf ?record .
-	?record rico:hasOrHadSubject ?personEHRI .
+  	?record a ehri:Record ;
+   		rico:hasOrHadHolder ehri_institutions:it-002845 ;
+     	rico:hasOrHadSubject ?personEHRI .
 	?personEHRI owl:sameAs ?person .
 	SERVICE &lt;http://lod.xdams.org/sparql&gt; {
 		?person a foaf:Person ;
@@ -460,9 +462,9 @@ PREFIX bio-ext: &lt;http://dati.cdec.it/lod/bio-ext/&gt;
 PREFIX shoah: &lt;http://dati.cdec.it/lod/shoah/&gt;
 
 SELECT ?record WHERE {
-	ehri_institutions:it-002845 rico:isOrWasHolderOf ?instantiation .
-	?instantiation rico:isInstantiationOf ?record .
-	?record rico:hasOrHadSubject ?personEHRI .
+	?record a ehri:Record ;
+   		rico:hasOrHadHolder ehri_institutions:it-002845 ;
+     	rico:hasOrHadSubject ?personEHRI .
 	?personEHRI owl:sameAs ?person .
 	SERVICE &lt;http://lod.xdams.org/sparql&gt; {
 		?person a foaf:Person ;
