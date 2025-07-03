@@ -62,11 +62,11 @@
 ## 	IRIs namespace we use to replace the webapp base (eg. http://localhost:8080/lodview/), an
 ##	installation on dbpedia domain should use <http://dbpedia.org/resource/> 
 	
-	conf:IRInamespace <https://lod.ehri-project.eu/>  ;
+	conf:IRInamespace <http://lod.ehri-project-test.eu/>  ;
 
 ## 	EndPoint
 
-	conf:endpoint <http://lod.ehri-project.eu/sparql>;
+	conf:endpoint <https://lod.ehri-project-test.eu/sparql>;
 	conf:endpointType "virtuoso"; 	## 	just "virtuoso" is handled right now, this will add some "rawdata" 
 									##	options in the footer, leave this blank if you don't want these links
 
@@ -146,7 +146,7 @@
 ##	if you are using a proxy, set it at <auto> for testing, an installation on dbpedia
 ##	domain should use <http://dbpedia.org/resource/>
 
-	conf:publicUrlPrefix <auto>; ## or <auto>
+	conf:publicUrlPrefix <https://lod.ehri-project-test.eu/>; ## or <auto>
 
 
 ## solve IRI issues in particular environments (proxypass, etc.)
@@ -155,7 +155,7 @@
 
 ##	home link (accessible from the banner)
 
-	conf:homeUrl <http://lod.ehri-project.eu/>;
+	conf:homeUrl <http://lod.ehri-project-test.eu/>;
 
   	
 ##	static resources publishing point, "staticResources/" is needed if you are going 
