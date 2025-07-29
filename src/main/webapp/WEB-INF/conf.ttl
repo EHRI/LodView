@@ -146,7 +146,7 @@
 ##	if you are using a proxy, set it at <auto> for testing, an installation on dbpedia
 ##	domain should use <http://dbpedia.org/resource/>
 
-	conf:publicUrlPrefix <https://lod.ehri-project-test.eu/>; ## or <auto>
+	conf:publicUrlPrefix <auto>; ## or <auto>
 
 
 ## solve IRI issues in particular environments (proxypass, etc.)
