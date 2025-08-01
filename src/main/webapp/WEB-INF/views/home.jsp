@@ -264,7 +264,7 @@ SELECT ?record ?recordLabel ?scopeAndContent WHERE {
     		rico:hasOrHadHolder ehri_institutions:be-002157 ;
             rico:title ?recordLabel ;
   		    rico:scopeAndContent ?scopeAndContent .
-		FILTER(lang(?scopeAndContent) = "nld")
+		FILTER(lang(?scopeAndContent) = "nl")
 }</textarea>
 				</div>
 				<div class="queryExample">
