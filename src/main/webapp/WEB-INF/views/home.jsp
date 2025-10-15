@@ -37,10 +37,10 @@
 				<p>This tool takes data hosted in the EHRI portal and offers it as a Knowledge Graph (KG). Here you can
 					browse different EHRI's entities (e.g., country reports, archival institutions descriptions,
 					archival descriptions, etc.) as linked data, and you can link to them from you own data.</p>
-				<p>This KG follows aligns the data to <a href="https://www.ica.org/en/records-in-contexts-ontology">Records in Context Ontology (RiC-O)</a>
+				<p>This KG aligns the data to <a href="https://www.ica.org/en/records-in-contexts-ontology">Records in Context Ontology (RiC-O)</a>
 					and uses <a href="https://schema.org/">schema.org</a> and own EHRI properties for completion.
-					This specific use and combination will become part of a future EHRI ontology.</p>
-				<p>As an ongoing effort to connect with other KGs in the LOD cloud, and to our partner's own efforts, the EHRI KG is now connected to:</p>
+					This specific use and combination is formalised through the <a href="http://lod.ehri-project-test.eu/ontology">EHRI ontology</a></p>
+				<p>As an ongoing effort to connect with other KGs in the LOD cloud, and to our partners' own efforts, the EHRI KG is now connected to:</p>
 				<ul id="linksToOtherKGs">
 					<li><a href="http://dati.cdec.it/">CDEC person database</a>: We connect the people mentioned in
 						CDEC's description in the EHRI KG to their representation in CDEC's KG, so you can complete the data shown here.</li>
@@ -63,7 +63,7 @@
 
 			<div class="value" id="countriesListSection">
 				<h3>Countries list</h3>
-                <p>The country reports constitute the main entry point to exploring the data in the EHRI portal. They offers an introduction to the Holocaust research and landscape in a certain country. Therefore, we propose that non-experts users start browsing this KG from one of the proposed countries in order to get an idea of the potential of this new tool. Below you can find a comprehensive list of the countries represented in the EHRI portal.</p>
+                <p>The country reports constitute the main entry point to exploring the data in the EHRI portal. They offer an introduction to the Holocaust research and landscape in a certain country. Therefore, we propose that non-experts users start browsing this KG from one of the proposed countries in order to get an idea of the potential of this new tool. Below you can find a comprehensive list of the countries represented in the EHRI portal.</p>
                 <ul id="countriesList">
 					<li><a class="customButton" href="countries/al">Albania</a></li>
 					<li><a class="customButton" href="countries/dz">Algeria</a></li>
@@ -77,7 +77,9 @@
 					<li><a class="customButton" href="countries/ba">Bosnia & Herzegovina</a></li>
 					<li><a class="customButton" href="countries/bg">Bulgaria</a></li>
 					<li><a class="customButton" href="countries/ca">Canada</a></li>
+					<li><a class="customButton" href="countries/cl">Chile</a></li>
 					<li><a class="customButton" href="countries/hr">Croatia</a></li>
+					<li><a class="customButton" href="countries/cy">Cyprus</a></li>
 					<li><a class="customButton" href="countries/cz">Czechia</a></li>
 					<li><a class="customButton" href="countries/dk">Denmark</a></li>
 					<li><a class="customButton" href="countries/eg">Egypt</a></li>
@@ -93,6 +95,7 @@
 					<li><a class="customButton" href="countries/it">Italy</a></li>
 					<li><a class="customButton" href="countries/jp">Japan</a></li>
 					<li><a class="customButton" href="countries/kz">Kazakhstan</a></li>
+					<li><a class="customButton" href="countries/xk">Kosovo</a></li>
 					<li><a class="customButton" href="countries/kg">Kyrgyzstan</a></li>
 					<li><a class="customButton" href="countries/lv">Latvia</a></li>
 					<li><a class="customButton" href="countries/ly">Libya</a></li>
@@ -121,13 +124,13 @@
 					<li><a class="customButton" href="countries/tw">Taiwan</a></li>
 					<li><a class="customButton" href="countries/tj">Tajikistan</a></li>
 					<li><a class="customButton" href="countries/tn">Tunisia</a></li>
+					<li><a class="customButton" href="countries/tr">Turkey</a></li>
 					<li><a class="customButton" href="countries/tm">Turkmenistan</a></li>
 					<li><a class="customButton" href="countries/ua">Ukraine</a></li>
 					<li><a class="customButton" href="countries/gb">United Kingdom</a></li>
 					<li><a class="customButton" href="countries/us">United States</a></li>
 					<li><a class="customButton" href="countries/uz">Uzbekistan</a></li>
 					<li><a class="customButton" href="countries/va">Vatican City</a></li>
-					<li><a class="customButton" href="countries/xk">Kosovo</a></li>
                 </ul>
 			</div>
 
@@ -236,7 +239,7 @@ PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 
 SELECT ?record ?recordLabel WHERE {
-  		?record a ehri:Record ;
+  		?record a ehri:RecordSet ;
     		rico:hasOrHadHolder ehri_institutions:nl-002896 ;
             rico:title ?recordLabel .
 }</textarea>
@@ -260,7 +263,7 @@ PREFIX ehri_units: &lt;http://lod.ehri-project-test.eu/units/&gt;
 PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 
 SELECT ?record ?recordLabel ?scopeAndContent WHERE {
-  		?record a ehri:Record ;
+  		?record a ehri:RecordSet ;
     		rico:hasOrHadHolder ehri_institutions:be-002157 ;
             rico:title ?recordLabel ;
   		    rico:scopeAndContent ?scopeAndContent .
@@ -287,7 +290,7 @@ PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 PREFIX ehri_terms: &lt;http://lod.ehri-project-test.eu/vocabularies/ehri-terms/&gt;
 
 SELECT ?record ?recordLabel WHERE {
-		?record a ehri:Record ;
+		?record a ehri:RecordSet ;
 			rico:title ?recordLabel ;
 			rico:hasOrHadSubject ehri_terms:1069 .
 }</textarea>
@@ -313,7 +316,7 @@ PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 SELECT (COUNT(?record) as ?totalRecords) WHERE {
 		ehri_countries:gb a ehri:Country ;
 			rico:isOrWasLocationOfAgent ?institution .
-  		?record a ehri:Record ;
+  		?record a ehri:RecordSet ;
 			rico:title ?recordLabel ;
    			rico:hasOrHadHolder ?institution ;
 }</textarea>
@@ -339,7 +342,7 @@ PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 SELECT ?institution (COUNT(?record) as ?totalRecords) WHERE {
   	ehri_countries:gb a ehri:Country ;
 			rico:isOrWasLocationOfAgent ?institution .
-  		?record a ehri:Record ;
+  		?record a ehri:RecordSet ;
 			rico:title ?recordLabel ;
    			rico:hasOrHadHolder ?institution ;
 } GROUP BY ?institution ORDER BY DESC(?totalRecords)</textarea>
@@ -367,7 +370,7 @@ SELECT ?country (AVG(?totalRecordByInstitution) as ?meanByCountry) WHERE {
 			rico:isOrWasLocationOfAgent ?institution .
 		{
 			SELECT ?institution (COUNT(?record) as ?totalRecordByInstitution) WHERE {
-      			?record a ehri:Record ;
+      			?record a ehri:RecordSet ;
 					rico:title ?recordLabel ;
    					rico:hasOrHadHolder ?institution .
 				?institution a ehri:Institution ;
@@ -396,7 +399,7 @@ SELECT ?countryLabel (count(?record) as ?recordsCount) WHERE {
 		owl:sameAs ?dbCountry ;
 		rico:name ?countryLabel ;
 		rico:isOrWasLocationOfAgent ?institution .
-  	?record a ehri:Record ;
+  	?record a ehri:RecordSet ;
         rico:title ?recordLabel ;
    		rico:hasOrHadHolder ?institution .
 	SERVICE &lt;https://dbpedia.org/sparql/&gt; {
@@ -429,7 +432,7 @@ PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 PREFIX bio-ext: &lt;http://dati.cdec.it/lod/bio-ext/&gt;
 
 SELECT ?survivor (COUNT(?record) as ?recordCount) WHERE {
-  	?record a ehri:Record ;
+  	?record a ehri:RecordSet ;
    		rico:hasOrHadHolder ehri_institutions:it-002845 ;
      	rico:hasOrHadSubject ?personEHRI .
 	?personEHRI owl:sameAs ?person .
@@ -462,7 +465,7 @@ PREFIX bio-ext: &lt;http://dati.cdec.it/lod/bio-ext/&gt;
 PREFIX shoah: &lt;http://dati.cdec.it/lod/shoah/&gt;
 
 SELECT ?record WHERE {
-	?record a ehri:Record ;
+	?record a ehri:RecordSet ;
    		rico:hasOrHadHolder ehri_institutions:it-002845 ;
      	rico:hasOrHadSubject ?personEHRI .
 	?personEHRI owl:sameAs ?person .
