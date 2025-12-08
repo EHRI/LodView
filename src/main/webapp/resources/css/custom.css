@@ -118,6 +118,10 @@ aside {
 	}
 }
 
+#endpoint, #endpoint a {
+	color: #b4b4b4;
+}
+
 /* ********************************** */
 /*  CUSTOM FOOTER, HIDDEN BY DEFAULT  */
 /* ********************************** */
