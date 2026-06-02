@@ -183,7 +183,7 @@ PREFIX ehri_countries: &lt;http://lod.ehri-project-test.eu/countries/&gt;
 SELECT ?institution ?institutionLabel WHERE {
 	ehri_countries:ar a ehri:Country ;
 			rico:name ?countryLabel ;
-			rico:containsOrContained ?institution .
+			rico:isOrWasLocationOfAgent ?institution .
 	?institution rico:name ?institutionLabel .
 }</textarea>
 				</div>
